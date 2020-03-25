@@ -7,16 +7,25 @@ import {Router, RouterModule, Routes} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './home/sidebar/sidebar.component';
+import { MainSugupuuComponent } from './home/main-sugupuu/main-sugupuu.component';
+import { UpdatePersonComponent } from './home/sidebar/update-person/update-person.component';
+import { AddConnectionComponent } from './home/sidebar/add-connection/add-connection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent,
+    MainSugupuuComponent,
+    UpdatePersonComponent,
+    AddConnectionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,15 +17,8 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.personService.getAllPeople().subscribe( data => {
       this.people = data;
-      console.log(data);
     });
-
-
-    console.log("--------------");
-
   }
-
 }
