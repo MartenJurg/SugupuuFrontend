@@ -1,6 +1,6 @@
 #sidebar {
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 400px;
+  max-width: 400px;
   height: 100%;
   background: #1d1919;
   color: #fff;
@@ -25,7 +25,7 @@
 
 #sidebar ul li a:hover {
   color: #f8b739;
-
+  cursor: pointer;
 }
 
 #sidebar ul li {

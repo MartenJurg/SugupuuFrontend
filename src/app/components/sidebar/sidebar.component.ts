@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FamilyTreeService} from "../../_services/familytree.service";
 import {FamilyTreeDto} from "../../_pojo/Forms/familyTreeDto";
+import { Router } from '@angular/router';
+import {LocalStorageService} from "../../_services/localstorage.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -13,10 +15,13 @@ export class SidebarComponent implements OnInit {
   newFamilyTree = "";
   familyTreeForm;
 
-  constructor(private familyTreeService: FamilyTreeService) {}
+  constructor(private familyTreeService: FamilyTreeService,
+              private localstorageService: LocalStorageService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.updateFamilyTreeList();
+
   }
 
   updateFamilyTreeList() {
@@ -35,6 +40,11 @@ export class SidebarComponent implements OnInit {
         this.updateFamilyTreeList();
       }
     );
+  }
 
+  selectFamilyTree(familyTree) {
+    this.localstorageService.saveFamilyTree(familyTree);
+    location.reload()
+    this.router.navigate([""])
   }
 }

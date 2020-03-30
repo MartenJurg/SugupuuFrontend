@@ -3,15 +3,15 @@
 
     <ul class="list-unstyled components mb-5">
       <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sugupuud</a>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Family trees</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
           <li *ngFor="let i of familyTrees">
-            <a href="#">{{i.name}}</a>
+            <a (click)="selectFamilyTree(i)">{{i.name}}</a>
           </li>
           <li>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <button (click)="addFamilyTree()" class="btn btn-outline-secondary" type="button">Lisa uus sugupuu</button>
+                <button (click)="addFamilyTree()" class="btn btn-outline-secondary" type="button">Add new</button>
               </div>
               <input [(ngModel)]="newFamilyTree" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
             </div>
@@ -19,7 +19,6 @@
         </ul>
       </li>
     </ul>
-    <app-add-connection></app-add-connection>
-    <app-update-person></app-update-person>
+
   </div>
 </nav>

@@ -1,0 +1,37 @@
+<div class="row justify-content-center box">
+  <div class="col-11 ">
+    <h2>Update person</h2>
+    <form (submit)="updatePerson()" >
+      <div class="input-group">
+        <p><label>First name: </label></p>
+        <input type="text" class="form-control" [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="input-group">
+        <p><label>Last name: </label></p>
+        <input type="text" class="form-control" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="input-group">
+        <p><label>Age: </label></p>
+        <input type="text" class="form-control" [(ngModel)]="age" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="input-group">
+        <p><label>Gender: </label></p>
+        <select (change)="updateGender($event.target.value)" *ngIf="gender == 'F'; else male" class="form-control form-control-sm">
+          <option>FEMALE</option>
+          <option>MALE</option>
+        </select>
+        <ng-template #male>
+          <select (change)="updateGender($event.target.value)" class="form-control form-control-sm">
+            <option>MALE</option>
+            <option>FEMALE</option>
+          </select>
+        </ng-template>
+
+      </div>
+      <div class="row justify-content-center">
+        <button type="submit" class="btn btn-dark border border-light col-12">Update</button>
+
+      </div>
+    </form>
+  </div>
+</div>

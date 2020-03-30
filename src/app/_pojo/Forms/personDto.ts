@@ -1,14 +1,13 @@
-﻿﻿export class Person {
+﻿export class PersonDto {
 
-  id: number;
   firstName: string;
   lastName: string;
   age: number;
   gender: string;
-  familyTreeId: string;
+  familyTreeId: number;
 
-  constructor(id: number, firstName: string, lastName: string, age: number, gender: string, familyTreeId: string) {
-    this.id = id;
+
+  constructor(firstName: string, lastName: string, age: number, gender: string, familyTreeId: number) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
@@ -16,4 +15,3 @@
     this.familyTreeId = familyTreeId;
   }
 }
-

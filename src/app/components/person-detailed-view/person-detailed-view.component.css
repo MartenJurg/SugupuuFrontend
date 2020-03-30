@@ -1,0 +1,12 @@
+.header-row {
+  padding-bottom: 10px;
+  border-bottom: #1d1919 solid 3px;
+}
+
+.header-row button {
+  margin-top: 30px;
+}
+
+.table-box {
+  margin-top: 20px;
+}

@@ -1,0 +1,49 @@
+<div class="row justify-content-center box">
+  <div class="col-12 ">
+    <h2>Add connection</h2>
+    <form>
+      <div class="input-group">
+        <p><label>First name: </label></p>
+        <input [(ngModel)]="firstName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="input-group">
+        <p><label>Last name: </label></p>
+        <input [(ngModel)]="lastName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="input-group">
+        <p><label>Age: </label></p>
+        <input [(ngModel)]="age" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="input-group">
+        <p><label>Gender: </label></p>
+        <select (change)="updateGender($event.target.value)" class="form-control form-control-sm">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+
+      <div class="row justify-content-center">
+        <button
+          (click)="addChild()"
+          type="button"
+          class="btn btn-dark border border-light col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+          Add child
+        </button>
+        <button (click)="addParent()" type="button" class="btn btn-dark border border-light col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">Add parent</button>
+        <button (click)="addPartner()" type="button" class="btn btn-dark border border-light col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">Add partner</button>
+        <button (click)="addExPartner()" type="button" class="btn btn-dark border border-light col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">Add ex-partner</button>
+        <button
+          *ngFor="let possibleParent of possibleParents"
+          (click)="addExistingParent($event)"
+          type="button"
+          class="btn btn-dark border border-light col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+          id="{{possibleParent.id}}">
+          Add {{possibleParent.firstName}} {{possibleParent.lastName}} as parent
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+

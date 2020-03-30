@@ -1,0 +1,58 @@
+
+
+<div class="row justify-content-between header-row">
+  <div class="col-10">
+    <h1>{{person.firstName}} {{person.lastName}}</h1>
+    <h3>This person is {{person.age}} years old {{person.gender}}</h3>
+  </div>
+
+  <div class="col-2">
+    <button (click)="back()" class="btn btn-danger">BACK TO FAMILY TREE</button>
+  </div>
+
+</div>
+
+<div class="row table-box justify-content-around">
+  <div class="col-5">
+    <h3>Parents:</h3><br>
+    <div class="col-12">
+      <app-people-table [people]="parents"></app-people-table>
+    </div>
+  </div>
+
+
+  <div class="col-5">
+    <h3>Children:</h3>
+    <div class="col-12">
+      <app-people-table [people]="children"></app-people-table>
+    </div>
+  </div>
+</div>
+
+<div class="row table-box justify-content-around">
+
+  <div class="col-5">
+    <h3>Partner:</h3>
+    <div class="col-12">
+      <app-people-table [people]="partners"></app-people-table>
+    </div>
+  </div>
+
+  <div class="col-5">
+    <h3>Ex-partners:</h3>
+    <div class="col-12">
+      <app-people-table [people]="exPartners"></app-people-table>
+    </div>
+  </div>
+
+</div>
+
+<div class="row justify-content-around">
+  <div class="col-xl-4 col-lg-10 col-md-10 col-sm-10 col-10">
+    <app-add-connection [personId]="personId"></app-add-connection>
+  </div>
+
+  <div class="col-xl-4 col-lg-10 col-md-10 col-sm-10 col-10">
+    <app-update-person [person]="person"></app-update-person>
+  </div>
+</div>
