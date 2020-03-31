@@ -30,17 +30,24 @@ export class PredecessorsViewComponent implements OnInit {
 
   getPersonData() {
     this.personService.getPersonById(this.personId).subscribe( data => {
-      this.person = data;
-      this.firstName = data.firstName;
-      this.lastName = data.lastName;
+      if (data == null) {
+        this.router.navigate([""])
+      } else {
+        this.person = data;
+        this.firstName = data.firstName;
+        this.lastName = data.lastName;
+      }
     })
   }
 
   getPredecessors() {
     this.personService.getPredecessors(this.personId).subscribe( data => {
-      console.log(data);
-      this.peopleList = data;
-      this.count = data.length;
+      if (data == null) {
+        this.router.navigate([""])
+      } else {
+        this.peopleList = data;
+        this.count = data.length;
+      }
     })
   }
 

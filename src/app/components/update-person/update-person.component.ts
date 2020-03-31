@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {PersonService} from "../../_services/person.service";
 import {PersonDto} from "../../_pojo/Forms/personDto";
@@ -35,10 +35,15 @@ export class UpdatePersonComponent implements OnInit {
     this.gender = person.gender;
   }
 
-
   updatePerson() {
     this.personService.updatePersonById(
-      new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id), this.personId).subscribe( data => {
+      new PersonDto(this.firstName,
+        this.lastName,
+        +this.age,
+        this.gender,
+        this.localStorageService.getFamilyTree().id),
+      this.personId)
+      .subscribe( data => {
       location.reload();
     }, error => {
       this.errorMessage = error.error.message;
@@ -49,5 +54,4 @@ export class UpdatePersonComponent implements OnInit {
   updateGender(value) {
     this.gender = value;
   }
-
 }
