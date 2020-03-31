@@ -18,6 +18,8 @@ export class AddConnectionComponent implements OnInit {
   lastName = "";
   age = "";
   gender = "MALE";
+  errorMessage;
+  isError = false;
 
   possibleParents;
 
@@ -51,6 +53,9 @@ export class AddConnectionComponent implements OnInit {
       this.personId).subscribe( data => {
       console.log("SUCCEESS")
       location.reload()
+    }, error => {
+      this.errorMessage = error.error.message;
+      this.isError = true;
     })
   }
   addParent() {
@@ -58,27 +63,34 @@ export class AddConnectionComponent implements OnInit {
     this.personService.addParentById(
       new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id),
       this.personId).subscribe( data => {
-      console.log("SUCCEESS")
       location.reload()
+    }, error => {
+      this.errorMessage = error.error.message;
+      this.isError = true;
     })
   }
+
   addPartner() {
     console.log("addPartner");
     this.personService.addPartnerById(
       new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id),
       this.personId).subscribe( data => {
-        console.log("SUCCEESS")
       location.reload()
+    }, error => {
+      this.errorMessage = error.error.message;
+      this.isError = true;
     })
-
   }
+
   addExPartner() {
     console.log("addExPartner");
     this.personService.addExPartnerById(
       new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id),
       this.personId).subscribe( data => {
-      console.log("SUCCEESS")
       location.reload()
+    }, error => {
+      this.errorMessage = error.error.message;
+      this.isError = true;
     })
   }
 

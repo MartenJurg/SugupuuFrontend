@@ -16,6 +16,8 @@ export class UpdatePersonComponent implements OnInit {
   lastName = "";
   age = "";
   gender = "";
+  errorMessage;
+  isError = false;
 
   constructor(private localStorageService: LocalStorageService,
               private personService: PersonService) { }
@@ -38,6 +40,9 @@ export class UpdatePersonComponent implements OnInit {
     this.personService.updatePersonById(
       new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id), this.personId).subscribe( data => {
       location.reload();
+    }, error => {
+      this.errorMessage = error.error.message;
+      this.isError = true;
     })
   }
 

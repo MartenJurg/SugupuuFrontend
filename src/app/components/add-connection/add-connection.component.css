@@ -27,3 +27,10 @@ form .row {
   margin-top: 5px;
   font-size: 18px;
 }
+
+.error {
+  padding: 10px;
+  color: red;
+  font-size: 18px;
+  font-weight: 400;
+}

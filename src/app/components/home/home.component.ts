@@ -55,7 +55,9 @@ export class HomeComponent implements OnInit {
       this.iniPeople();
     }
     else {
-      this.personService.getSearchResult(this.searchPattern).subscribe( data => {
+      this.personService.getSearchResult(this.searchPattern, this.localStorageService.getFamilyTree().id).subscribe( data => {
+        this.people = [];
+        console.log(data);
         this.people = data
       })
     }

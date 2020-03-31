@@ -41,6 +41,9 @@
           id="{{possibleParent.id}}">
           Add {{possibleParent.firstName}} {{possibleParent.lastName}} as parent
         </button>
+        <div class="error" *ngIf="isError">
+          <span class="red">{{errorMessage}}</span>
+        </div>
       </div>
 
     </form>

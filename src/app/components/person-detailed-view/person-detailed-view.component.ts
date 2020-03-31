@@ -27,6 +27,8 @@ export class PersonDetailedViewComponent implements OnInit {
   realSiblings;
   halfSiblings;
   allSiblings;
+  youngestUncleOrAunt;
+  doesYoungestUncleOrAuntExist = false;
 
 
   constructor(private localStorageService: LocalStorageService,
@@ -38,7 +40,19 @@ export class PersonDetailedViewComponent implements OnInit {
     this.personId = this.route.snapshot.params.id;
     this.getPersonData();
     this.getPeopleConnectedToPerson();
+    this.processUnclesAndAunts()
+  }
 
+  processUnclesAndAunts() {
+    this.personService.getYoungestUncleOrAuntOf(this.personId).subscribe( data => {
+
+      console.log(data);
+      if (data != null) {
+        this.youngestUncleOrAunt = data;
+        this.doesYoungestUncleOrAuntExist = true;
+      }
+
+    })
   }
 
   processSiblings() {
@@ -89,7 +103,7 @@ export class PersonDetailedViewComponent implements OnInit {
 
     this.personService.getHalfSiblingsOf(this.personId).subscribe( data => {
       this.halfSiblings = data;
-    })
+    });
     this.personService.getAllSiblingsOf(this.personId).subscribe( data => {
       this.allSiblings = data;
       this.processSiblings();

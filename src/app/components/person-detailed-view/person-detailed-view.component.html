@@ -3,12 +3,34 @@
 <div class="row justify-content-between header-row">
   <div class="col-10">
     <h1>{{firstName}} {{lastName}}</h1>
-    <h3>This person is {{age}} years old {{gender}}, <span class="red">{{childCountString}} child of all the siblings</span></h3>
+    <h3>This person is {{age}} years old {{gender}} </h3>
   </div>
 
   <div class="col-2">
     <button (click)="back()" class="btn btn-danger">BACK TO FAMILY TREE</button>
   </div>
+</div>
+
+<div class="row justify-content-around">
+  <div class="col-5 p-3">
+    <h3><span class="red">This person is {{childCountString}} child of all the siblings</span></h3>
+  </div>
+  <div *ngIf="doesYoungestUncleOrAuntExist; else noUnclesOrAunts" class="col-5 p-3">
+    <h3>
+      <span class="red">
+        Youngest Uncle/Aunt:
+        {{this.youngestUncleOrAunt.firstName}}
+        {{this.youngestUncleOrAunt.lastName}}
+        {{this.youngestUncleOrAunt.age}}
+        {{this.youngestUncleOrAunt.gender}}
+      </span>
+    </h3>
+  </div>
+  <ng-template #noUnclesOrAunts>
+    <div class="col-5 p-3">
+      <h3><span class="red"> This person has no uncles or aunts</span></h3>
+    </div>
+  </ng-template>
 
 </div>
 
@@ -22,7 +44,7 @@
 
 
   <div class="col-5">
-    <h3>Children:</h3>
+    <h3>Children:</h3><br>
     <div class="col-12">
       <app-people-table [people]="children"></app-people-table>
     </div>
@@ -32,14 +54,14 @@
 <div class="row table-box justify-content-around">
 
   <div class="col-5">
-    <h3>Partner:</h3>
+    <h3>Partner:</h3><br>
     <div class="col-12">
       <app-people-table [people]="partners"></app-people-table>
     </div>
   </div>
 
   <div class="col-5">
-    <h3>Ex-partners:</h3>
+    <h3>Ex-partners:</h3><br>
     <div class="col-12">
       <app-people-table [people]="exPartners"></app-people-table>
     </div>
@@ -50,14 +72,14 @@
 <div class="row table-box justify-content-around">
 
   <div class="col-5">
-    <h3>Siblings:</h3>
+    <h3>Siblings:</h3><br>
     <div class="col-12">
       <app-people-table [people]="realSiblings"></app-people-table>
     </div>
   </div>
 
   <div class="col-5">
-    <h3>Half-siblings:</h3>
+    <h3>Half-siblings:</h3><br>
     <div class="col-12">
       <app-people-table [people]="halfSiblings"></app-people-table>
     </div>

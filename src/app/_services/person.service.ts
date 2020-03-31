@@ -19,8 +19,12 @@ export  class PersonService {
     return this.http.get<Person[]>("api/person/all");
   }
 
-  getSearchResult(pattern: String): Observable<Person[]> {
-    return this.http.get<Person[]>("api/person/search/" + pattern);
+  getSearchResult(pattern: String, id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/search/" + pattern + "/" + id);
+  }
+
+  getYoungestUncleOrAuntOf(id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getYoungestUncleOrAunt/" + id);
   }
 
   getAllSiblingsOf(id: number): Observable<Person[]> {
