@@ -1,0 +1,21 @@
+
+<div class="">
+  <h3 class="pl-5 m-3">Person with most predecessors:</h3>
+
+  <div class="row justify-content-center">
+    <table class="table col-11 table-striped shadow">
+      <tbody>
+      <tr >
+        <td>{{firstName}}</td>
+        <td>{{lastName}}</td>
+        <td>{{age}}</td>
+        <td>{{gender}}</td>
+        <td width="20%" (click)="navigateToPredecessors($event)" id="{{personId}}"><button  style="width: 100%" type="button" class="btn btn-success" >See predecessors</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

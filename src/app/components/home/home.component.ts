@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   people = [];
   isFamilyTreeChosen = false;
   message = "";
+  searchPattern = "";
 
 
   constructor(private localStorageService: LocalStorageService,
@@ -27,30 +28,36 @@ export class HomeComponent implements OnInit {
 
   initFamilyTree() {
     if (this.localStorageService.getFamilyTree() != null) {
-      this.startAlgorithm()
+      this.iniPeople();
       this.message = "Family tree: " + this.localStorageService.getFamilyTree().name
     }
   }
 
-  startAlgorithm() {
-    // Please do the magic XD
+  iniPeople() {
     this.personService.getAllPeopleByFamilyTreeId(this.localStorageService.getFamilyTree().id).subscribe( data => {
       for (let id in data ) {
         this.people.push(new Person(data[id].id ,data[id].firstName ,data[id].lastName ,data[id].age ,data[id].gender ,data[id].familyTreeId))
-        console.log(this.people);
-        this.isFamilyTreeChosen = true;
-
       }
+      this.isFamilyTreeChosen = true;
     })
   }
 
   selectPerson(event) {
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
-    console.log(value);
-
+    let target = event.target || event.srcElement || event.currentTarget;
+    let idAttr = target.attributes.id;
+    let value = idAttr.nodeValue;
     this.router.navigate(["/person/" + value])
+  }
 
+  search() {
+    if (this.searchPattern == "") {
+      this.people = [];
+      this.iniPeople();
+    }
+    else {
+      this.personService.getSearchResult(this.searchPattern).subscribe( data => {
+        this.people = data
+      })
+    }
   }
 }

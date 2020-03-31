@@ -19,6 +19,30 @@ export  class PersonService {
     return this.http.get<Person[]>("api/person/all");
   }
 
+  getSearchResult(pattern: String): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/search/" + pattern);
+  }
+
+  getAllSiblingsOf(id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getAllSiblingsOf/" + id);
+  }
+
+  getPersonWithMostPredecessors(): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getPersonWithMostPredecessors");
+  }
+
+  getPredecessors(id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getPersonsPredecessors/" + id);
+  }
+
+  getRealSiblingsOf(id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getRealSiblingsOf/" + id);
+  }
+
+  getHalfSiblingsOf(id: number): Observable<Person[]> {
+    return this.http.get<Person[]>("api/person/getHalfSiblingsOf/" + id);
+  }
+
   getAllPeopleByFamilyTreeId(id: number): Observable<Person[]> {
     return this.http.get<Person[]>("api/person/getAllByTree/" + id);
   }

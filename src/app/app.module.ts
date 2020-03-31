@@ -11,6 +11,8 @@ import { UpdatePersonComponent } from './components/update-person/update-person.
 import { AddConnectionComponent } from './components/add-connection/add-connection.component';
 import { PersonDetailedViewComponent } from './components/person-detailed-view/person-detailed-view.component';
 import { PeopleTableComponent } from './components/people-table/people-table.component';
+import { MostPredecessorsPersonComponent } from './components/most-predecessors-person/most-predecessors-person.component';
+import { PredecessorsViewComponent } from './components/predecessors-view/predecessors-view.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PeopleTableComponent } from './components/people-table/people-table.com
     UpdatePersonComponent,
     AddConnectionComponent,
     PersonDetailedViewComponent,
-    PeopleTableComponent
+    PeopleTableComponent,
+    MostPredecessorsPersonComponent,
+    PredecessorsViewComponent
   ],
   imports: [
     BrowserModule,

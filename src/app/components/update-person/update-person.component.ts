@@ -2,7 +2,6 @@ import {Component, HostListener, OnInit, Input} from '@angular/core';
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {PersonService} from "../../_services/person.service";
 import {PersonDto} from "../../_pojo/Forms/personDto";
-import {Person} from "../../_pojo/person";
 
 @Component({
   selector: 'app-update-person',
@@ -11,7 +10,7 @@ import {Person} from "../../_pojo/person";
 })
 export class UpdatePersonComponent implements OnInit {
 
-  @Input() person: Person;
+  @Input() personId: number;
 
   firstName = "";
   lastName = "";
@@ -22,7 +21,9 @@ export class UpdatePersonComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit(): void {
-    this.fillFields(this.person)
+    this.personService.getPersonById(this.personId).subscribe( data => {
+      this.fillFields(data)
+    })
   }
 
   fillFields(person) {
@@ -32,13 +33,10 @@ export class UpdatePersonComponent implements OnInit {
     this.gender = person.gender;
   }
 
-  isPersonSelected() {
-
-  }
 
   updatePerson() {
     this.personService.updatePersonById(
-      new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id), this.person.id).subscribe( data => {
+      new PersonDto(this.firstName, this.lastName, +this.age, this.gender, this.localStorageService.getFamilyTree().id), this.personId).subscribe( data => {
       location.reload();
     })
   }

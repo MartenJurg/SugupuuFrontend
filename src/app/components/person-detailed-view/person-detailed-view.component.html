@@ -2,8 +2,8 @@
 
 <div class="row justify-content-between header-row">
   <div class="col-10">
-    <h1>{{person.firstName}} {{person.lastName}}</h1>
-    <h3>This person is {{person.age}} years old {{person.gender}}</h3>
+    <h1>{{firstName}} {{lastName}}</h1>
+    <h3>This person is {{age}} years old {{gender}}, <span class="red">{{childCountString}} child of all the siblings</span></h3>
   </div>
 
   <div class="col-2">
@@ -47,12 +47,30 @@
 
 </div>
 
+<div class="row table-box justify-content-around">
+
+  <div class="col-5">
+    <h3>Siblings:</h3>
+    <div class="col-12">
+      <app-people-table [people]="realSiblings"></app-people-table>
+    </div>
+  </div>
+
+  <div class="col-5">
+    <h3>Half-siblings:</h3>
+    <div class="col-12">
+      <app-people-table [people]="halfSiblings"></app-people-table>
+    </div>
+  </div>
+
+</div>
+
 <div class="row justify-content-around">
   <div class="col-xl-4 col-lg-10 col-md-10 col-sm-10 col-10">
     <app-add-connection [personId]="personId"></app-add-connection>
   </div>
 
   <div class="col-xl-4 col-lg-10 col-md-10 col-sm-10 col-10">
-    <app-update-person [person]="person"></app-update-person>
+    <app-update-person [personId]="personId"></app-update-person>
   </div>
 </div>

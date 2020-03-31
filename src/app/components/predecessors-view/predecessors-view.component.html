@@ -1,0 +1,36 @@
+
+<div class="row justify-content-between header-row">
+  <div class="col-10">
+    <h1>Predecessors of {{firstName}} {{lastName}} ({{count}})</h1>
+
+  </div>
+
+  <div class="col-2">
+    <button (click)="back()" class="btn btn-danger">BACK TO FAMILY TREE</button>
+  </div>
+
+</div>
+
+<div  class="row justify-content-center">
+
+  <table class="table col-11 table-striped shadow">
+    <thead>
+    <tr>
+      <td>First name</td>
+      <td>Last name</td>
+      <td>Age</td>
+      <td>Gender</td>
+      <td width="10%"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of peopleList">
+      <td>{{p.firstName}}</td>
+      <td>{{p.lastName}}</td>
+      <td>{{p.age}}</td>
+      <td>{{p.gender}}</td>
+      <td><button (click)="selectPerson($event)"  type="button" class="btn btn-success" id="{{p.id}}">View</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,17 +1,23 @@
 <div *ngIf="isFamilyTreeChosen; else chooseTree">
+
+
   <h1>{{message}}</h1>
+  <div>
+    <app-most-predecessors-person></app-most-predecessors-person>
+  </div>
   <div class="row justify-content-center mt-4">
+
     <div class="input-group mb-3 col-11">
       <div class="input-group-prepend ">
-        <button  class="btn btn-outline-secondary" type="button">Search</button>
+        <button (click)="search()"  class="btn btn-outline-secondary" type="button">Search</button>
       </div>
-      <input  type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+      <input [(ngModel)]="searchPattern"  type="text" class="form-control" placeholder="First or last name" aria-label="" aria-describedby="basic-addon1">
     </div>
   </div>
 
   <div class="row justify-content-center">
 
-    <table class="table col-11 table-striped">
+    <table class="table col-11 table-striped shadow">
       <thead>
       <tr>
         <td>First name</td>

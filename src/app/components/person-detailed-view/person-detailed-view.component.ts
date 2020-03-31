@@ -13,11 +13,20 @@ import {Person} from "../../_pojo/person";
 export class PersonDetailedViewComponent implements OnInit {
   personId;
   person;
+  firstName = "";
+  lastName = "";
+  age = "";
+  gender = "";
+  childCountString = "";
+  childCount = 1;
 
   parents;
   children;
   partners: {};
   exPartners;
+  realSiblings;
+  halfSiblings;
+  allSiblings;
 
 
   constructor(private localStorageService: LocalStorageService,
@@ -29,14 +38,63 @@ export class PersonDetailedViewComponent implements OnInit {
     this.personId = this.route.snapshot.params.id;
     this.getPersonData();
     this.getPeopleConnectedToPerson();
+
   }
 
+  processSiblings() {
+    for (let id in this.allSiblings) {
+      console.log(this.allSiblings[id].id);
+      console.log(this.personId);
+      if (this.allSiblings[id].age < +this.age) {
+        break
+      }
+      this.childCount++
+    }
+    this.createChildCountString()
+  }
+
+  createChildCountString() {
+    switch(this.childCount) {
+      case 1: {
+        this.childCountString = this.childCount + "st";
+        break;
+      }
+      case 2: {
+        this.childCountString = this.childCount + "nd";
+        break;
+      }
+      case 3: {
+        this.childCountString = this.childCount + "rd";
+        break;
+      }
+      default: {
+        this.childCountString = this.childCount + "th";
+        break;
+      }
+    }
+  }
 
 
   getPeopleConnectedToPerson() {
     this.getParents();
     this.getChildren();
     this.getPartners();
+    this.getSiblings();
+  }
+
+  getSiblings() {
+    this.personService.getRealSiblingsOf(this.personId).subscribe( data => {
+      this.realSiblings = data;
+    });
+
+    this.personService.getHalfSiblingsOf(this.personId).subscribe( data => {
+      this.halfSiblings = data;
+    })
+    this.personService.getAllSiblingsOf(this.personId).subscribe( data => {
+      this.allSiblings = data;
+      this.processSiblings();
+    })
+
   }
 
   getParents() {
@@ -68,6 +126,10 @@ export class PersonDetailedViewComponent implements OnInit {
           this.router.navigate([""])
         } else {
           this.person = new Person(data.id, data.firstName, data.lastName, data.age, data.gender, data.familyTreeId)
+          this.firstName = data.firstName;
+          this.lastName = data.lastName;
+          this.age = data.age.toString();
+          this.gender = data.gender;
         }
       }
     )
